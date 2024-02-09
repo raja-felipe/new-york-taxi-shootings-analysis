@@ -1,3 +1,5 @@
+from pyspark.sql import SparkSession
+
 # Spark Session Initialization
 SPARK_APP_NAME = "MAST30034 Project 1"
 SPARK_EAGER_VAL = "spark.sql.repl.eagerEval.enabled"
@@ -13,15 +15,14 @@ SPARK_AUTOBROADCAST_THRESHOLD_SET = "-1"
 SPARK_EXECUTOR_MEM_OVERHEAD = 'spark.executor.memoryOverhead'
 SPARK_EXECUTOR_MEM_OVERHEAD_SET = '1500'
 
-# URLS/URL TEMPLATES
-TAXI_URL_TEMPLATE = "https://d37ci6vzurychx.cloudfront.net/trip-data/"
-NYPD_ARRESTS = "https://data.cityofnewyork.us/api/views/8h9b-rp9u/rows.csv?accessType=DOWNLOAD"
-NYPD_COURT_SUMMONS = "https://data.cityofnewyork.us/api/views/sv2w-rv3k/rows.csv?accessType=DOWNLOAD"
-NYPD_SHOOTING = "https://data.cityofnewyork.us/api/views/833y-fsy8/rows.csv?accessType=DOWNLOAD"
-NYPD_COMPLAINTS = "https://data.cityofnewyork.us/api/views/qgea-i56i/rows.csv?accessType=DOWNLOAD"
-NYPD_PRECICNTS_URL = "https://data.cityofnewyork.us/api/geospatial/78dh-3ptz?method=export&format=Original"
-NY_ZONE_SHP_URL = "https://d37ci6vzurychx.cloudfront.net/misc/taxi_zones.zip"
-NY_ZONE_LOOKUP_URL= "https://d37ci6vzurychx.cloudfront.net/misc/taxi+_zone_lookup.csv"
+def create_spark():
+    return (
+        SparkSession.builder.appName(SPARK_APP_NAME)
+        .config(SPARK_EAGER_VAL, SPARK_EAGER_VAL_SET) 
+        .config(SPARK_CACHE_METADATA, SPARK_CACHE_METADATA_SET)
+        .config(SPARK_TIMEZONE, SPARK_TIMEZONE_SET)
+        .getOrCreate()
+    )
 
 # Keywords for File/Variable Names
 FROM_YEAR = 2016
@@ -72,6 +73,15 @@ YELLOW_ZONE = "Yellow Zone"
 
 # Designated Directories
 LANDING_DIR = "./data/landing/"
+LANDING_GREEN_DIR = f'{LANDING_DIR}{GREEN}'
+LANDING_YELLOW_DIR = f'{LANDING_DIR}{YELLOW}'
+LANDING_FHV_DIR = f'{LANDING_DIR}{FHV}'
+LANDING_HVFHV_DIR = f'{LANDING_DIR}{HVFHV}'
+LANDING_NYPD_DIR = f"{LANDING_DIR}{NYPD}/"
+LANDING_NYPD_SHOOTINGS = f'{LANDING_NYPD_DIR}shootings.csv'
+ZONE_DIR = f"{LANDING_DIR}zone/"
+NY_ZONE_LOOKUP_FILE = f'{ZONE_DIR}ny_zones_lookup.csv'
+NY_ZONE_SHP_FILE = f'{ZONE_DIR}ny_zones.zip'
 RAW_DIR = "./data/raw/"
 CURATED_DIR = "./data/curated/"
 ZONE_DIR = f'.{LANDING_DIR}zone/'
