@@ -26,9 +26,7 @@ def create_spark():
 
 # Keywords for File/Variable Names
 FROM_YEAR = 2016
-TO_YEAR = 2020
-COVID_BOUND = 2021
-DOWNLOAD_BOUND = 2023
+TO_YEAR = 2023
 FROM_MONTH = 1
 TO_MONTH = 12
 FROM_DAY = 1
@@ -43,11 +41,12 @@ GREEN = "green"
 GREEN_VAL = 1
 FHV = "fhv"
 FHV_VAL = 2
-HVFHV = "hvfhv"
-HVFHV_VAL = 3
+FHVHV = "fhvhv"
+FHVHV_VAL = 3
 TAXI = "taxi"
 NYPD = "NYPD"
-VEHICLES = [YELLOW, GREEN]
+# VEHICLES = [YELLOW, GREEN, FHV, FHVHV]
+VEHICLES = [GREEN]
 
 HOUR = "hour"
 HOUR_MIN = 0
@@ -58,6 +57,8 @@ TIME = "time"
 RAW_ANALYSIS_FILES = "raw_analysis_files"
 YELLOW_FILE_FRMT = f'{YELLOW}_tripdata_'
 GREEN_FILE_FRMT = f'{GREEN}_tripdata_'
+FHV_FILE_FRMT = f'{FHV}_tripdata_'
+FHVHV_FILE_FRMT = f'{FHVHV}_tripdata_'
 
 SHOOTINGS = "shootings"
 PARQUET = '.parquet'
@@ -70,13 +71,17 @@ AIRPORT = "Airport"
 ZONE = "Zone"
 SERVICE_ZONE = "service_zone"
 YELLOW_ZONE = "Yellow Zone"
+TAXI_URL_TEMPLATE = "https://d37ci6vzurychx.cloudfront.net/trip-data/"
+
 
 # Designated Directories
 LANDING_DIR = "./data/landing/"
 LANDING_GREEN_DIR = f'{LANDING_DIR}{GREEN}'
 LANDING_YELLOW_DIR = f'{LANDING_DIR}{YELLOW}'
 LANDING_FHV_DIR = f'{LANDING_DIR}{FHV}'
-LANDING_HVFHV_DIR = f'{LANDING_DIR}{HVFHV}'
+LANDING_HVFHV_DIR = f'{LANDING_DIR}{FHVHV}'
+# LANDING_TAXI_DIRECTORIES = [LANDING_YELLOW_DIR, LANDING_GREEN_DIR, LANDING_FHV_DIR, LANDING_HVFHV_DIR]
+LANDING_TAXI_DIRECTORIES = [LANDING_GREEN_DIR]
 LANDING_NYPD_DIR = f"{LANDING_DIR}{NYPD}/"
 LANDING_NYPD_SHOOTINGS = f'{LANDING_NYPD_DIR}shootings.csv'
 ZONE_DIR = f"{LANDING_DIR}zone/"
@@ -84,9 +89,9 @@ NY_ZONE_LOOKUP_FILE = f'{ZONE_DIR}ny_zones_lookup.csv'
 NY_ZONE_SHP_FILE = f'{ZONE_DIR}ny_zones.zip'
 RAW_DIR = "./data/raw/"
 CURATED_DIR = "./data/curated/"
-ZONE_DIR = f'.{LANDING_DIR}zone/'
-TAXI_DIR = f'.{LANDING_DIR}{TAXI}/'
-GREEN_DIR = f'.{TAXI_DIR}{GREEN}/'
-YELLOW_DIR = f'.{TAXI_DIR}{YELLOW}/'
-FHV_DIR = f'.{TAXI_DIR}{FHV}/'
-HVFHV_DIR = f'.{TAXI_DIR}{HVFHV}/'
+ZONE_DIR = f'{LANDING_DIR}zone/'
+TAXI_DIR = f'{LANDING_DIR}{TAXI}/'
+GREEN_DIR = f'{TAXI_DIR}{GREEN}/'
+YELLOW_DIR = f'{TAXI_DIR}{YELLOW}/'
+FHV_DIR = f'{TAXI_DIR}{FHV}/'
+HVFHV_DIR = f'{TAXI_DIR}{FHVHV}/'
