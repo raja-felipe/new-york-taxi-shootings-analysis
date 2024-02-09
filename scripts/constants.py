@@ -36,9 +36,9 @@ MONTHS = range(1,13)
 MONTH_ZIP = 2
 
 YELLOW = 'yellow'
-YELLOW_VAL = 0
+YELLOW_VAL = 1
 GREEN = "green"
-GREEN_VAL = 1
+GREEN_VAL = 0
 FHV = "fhv"
 FHV_VAL = 2
 FHVHV = "fhvhv"
@@ -95,3 +95,75 @@ GREEN_DIR = f'{TAXI_DIR}{GREEN}/'
 YELLOW_DIR = f'{TAXI_DIR}{YELLOW}/'
 FHV_DIR = f'{TAXI_DIR}{FHV}/'
 HVFHV_DIR = f'{TAXI_DIR}{FHVHV}/'
+RAW_GREEN_DIR = f'{RAW_DIR}{GREEN}/'
+
+# Needed Columns and Bounds
+GREEN_PICKUP_DATETIME = "lpep_pickup_datetime"
+GREEN_DROPOFF_DATETIME = "lpep_dropoff_datetime"
+YELLOW_PICKUP_DATETIME = "tpep_pickup_datetime"
+YELLOW_DROPOFF_DATETIME = "tpep_dropoff_datetime"
+PICKUP_DATETIME = "pickup_datetime"
+DROPOFF_DATETIME = "dropoff_datetime"
+
+YEAR = "year"
+MONTH = "month"
+DAY = "day"
+PICKUP_YEAR = "pickup_year"
+PICKUP_DAY = "pickup_day"
+PICKUP_MONTH = "pickup_month"
+PICKUP_TIME = "pickup_time"
+PICKUP_HOUR = "pickup_hour"
+PICKUP_MINUTES = "pickup_minutes"
+PICKUP_SECONDS = "pickup_seconds"
+PICKUP_DATE = "pickup_date"
+DROPOFF_YEAR = "dropoff_year"
+DROPOFF_DAY = "dropoff_day"
+DROPOFF_MONTH = "dropoff_month"
+DROPOFF_TIME = "dropoff_time"
+DROPOFF_HOUR = "dropoff_hour"
+DROPOFF_MINUTES = "dropoff_minutes"
+DROPOFF_SECONDS = "dropoff_seconds"
+DROPOFF_DATE = "dropoff_date"
+TRIP_TIME_SECONDS = "trip_time_seconds"
+
+PASSENGER_COUNT = "passenger_count"
+TAXI_COLOR = "taxi_color"
+
+TRIP_DISTANCE = "trip_distance"
+MIN_TRIP_DISTANCE = 0
+
+PASSENGER_COUNT = "passenger_count"
+MIN_PASSENGERS = 0
+
+AIRPORT_FEE = "airport_fee"
+AIRPORT_FEE_SET = 0
+
+EHAIL_FEE = "ehail_fee"
+EHAIL_FEE_SET = 0
+
+TRIP_TYPE = "trip_type"
+TRIP_TYPE_SET = -1
+
+TIME_FORMAT = 'HH:mm:ss'
+
+# Column order to merge taxi datasets
+COLUMN_ORDER = ["vendorid", 
+ "ratecodeid", 
+ "dolocationid", 
+ "pulocationid", 
+ "pickup_datetime", 
+ "dropoff_datetime",
+ "trip_distance", 
+ "passenger_count", 
+ "store_and_fwd_flag",
+ "payment_type",
+ "total_amount",
+ "fare_amount",  
+ "tolls_amount", 
+ "tip_amount",
+ "extra",
+ "mta_tax",
+ "congestion_surcharge",
+ "improvement_surcharge",
+ "ehail_fee",
+ "trip_type"]
