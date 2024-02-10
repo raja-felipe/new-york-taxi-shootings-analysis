@@ -24,6 +24,8 @@ class DataMerger:
             agg_shootings, 
             agg_green[DATE] == agg_shootings[SHOOTINGS_DATE.lower()], 
             INNER)
+        
+        print(final_df.count())
 
         # Ensure that the datatype is correct for the merged dataframe
         shootings_col = [col for col in final_df.columns if SHOOTINGS in col]

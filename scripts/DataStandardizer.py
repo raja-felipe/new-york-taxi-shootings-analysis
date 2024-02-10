@@ -25,8 +25,6 @@ class DataStandardizer:
                         DoubleType(), True),
             StructField('passenger_count',
                         IntegerType(), True),
-            StructField('store_and_fwd_flag',
-                        StringType(), True),
             StructField('payment_type',
                         LongType(), True),
             StructField('total_amount',

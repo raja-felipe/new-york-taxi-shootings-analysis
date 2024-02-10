@@ -76,7 +76,7 @@ class DataCurator:
             green_files += curr_year_files
         
         # Now select only the files relevant to our data
-        green_files = green_files[NUM_MONTHS_BACK:]
+        green_files = sorted(green_files[NUM_MONTHS_BACK:])
         raw_green = spark.read.load(green_files)
 
         # These columns are dropped because
@@ -85,7 +85,7 @@ class DataCurator:
         # - TOTAL AMOUNT: Does not actually represent real
         #   total amount (excludes cash tip)
         raw_green = raw_green.drop(CONGESTION_SURCHARGE)\
-            .drop(EHAIL_FEE).drop(TOTAL_AMOUNT)
+            .drop(EHAIL_FEE).drop(TOTAL_AMOUNT).drop(STORE_AND_FWD_FLAG)
 
         # Now we can adjust the timezone to NYC, since it was
         # kept in UTC
@@ -131,8 +131,8 @@ class DataCurator:
         raw_green = raw_green.filter(F.col(PASSENGER_COUNT) > MIN_PASSENGERS)
 
         # Make sure the stoer and foward flags are within dictionary
-        raw_green = raw_green.filter((F.col(STORE_AND_FWD_FLAG) == STORE_AND_FWD_FLAG_Y) | \
-                                    (F.col(STORE_AND_FWD_FLAG) == STORE_AND_FWD_FLAG_N))
+        # raw_green = raw_green.filter((F.col(STORE_AND_FWD_FLAG) == STORE_AND_FWD_FLAG_Y) | \
+        #                             (F.col(STORE_AND_FWD_FLAG) == STORE_AND_FWD_FLAG_N))
 
         # Rate code is within valid values
         raw_green = raw_green.filter((F.col(RATE_CODE_ID) >= MIN_RATE_CODE_ID) & \

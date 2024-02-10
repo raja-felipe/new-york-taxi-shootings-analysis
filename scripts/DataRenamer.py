@@ -36,12 +36,14 @@ class DataRenamer:
         # Rename the dataframe
         raw_taxi = raw_taxi.select(*[F.col(old).alias(new) \
                                     for old, new in change_dict.items()])
+    
                 
         # We need these to reset the order of the dataframe columns
         day_of_week_vals = range(FROM_DAY_OF_WEEK, TO_DAY_OF_WEEK+1)
         data_curator = DataCurator()
         pu_location_id_vals, do_location_id_vals, _, _ = data_curator.make_valid_taxi_zones()
         hour_vals = range(HOUR_MIN, HOUR_MAX+1)
+
         # Format the names to the dataframe
         day_names = [f'{DAY_OF_WEEK}_{category}' for category in day_of_week_vals]
 
@@ -56,10 +58,11 @@ class DataRenamer:
         column_order = [DATE] + pu_location_names + do_location_names \
             + hour_names + day_names + [TAXI_COUNT]
         raw_taxi = raw_taxi.select(column_order)
+
+        print(raw_taxi.count())
         
         # Now save the dataframe
-        if not os.path.exists(FINAL_GREEN):
-            raw_taxi.write.parquet(f'{FINAL_GREEN}')            
+        raw_taxi.write.mode(OVERWRITE).parquet(f'{FINAL_GREEN}')            
         return
     
 if __name__ == "__main__":
