@@ -191,8 +191,9 @@ class DataModeller:
             fp.write('\n')
             fp.writelines(str(uncertainty))
 
-        # print(f'FINAL RMSE: {rmse}')
-        # print(f'UNCERTAINTY OF RMSE: {uncertainty}')
+        print("RANDOM FOREST REGRESSION")
+        print(f'FINAL RMSE: {rmse}')
+        print(f'UNCERTAINTY OF RMSE: {uncertainty}')
         return
 
 
@@ -288,7 +289,6 @@ class DataModeller:
         dates = list(final_df[DATE])
         # No need to set our date to datetime datatype
         final_df.set_index(DATE, inplace=True)
-        
 
         # Now we want to do seasonal decomposition
         decomposition = seasonal_decompose(
@@ -351,9 +351,10 @@ class DataModeller:
             fp.writelines(str(rmse))
             fp.write('\n')
             fp.writelines(str(uncertainty))
-            
-        # print(f'FINAL RMSE: {rmse}')
-        # print(f'UNCERTAINTY OF RMSE: {uncertainty}')
+        
+        print("ARIMA MODEL")
+        print(f'FINAL RMSE: {rmse}')
+        print(f'UNCERTAINTY OF RMSE: {uncertainty}')
         return
 
 

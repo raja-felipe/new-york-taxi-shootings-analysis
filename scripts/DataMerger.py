@@ -15,6 +15,8 @@ class DataMerger:
         spark = create_spark()
 
         agg_shootings = spark.read.csv(AGGREGATED_SHOOTINGS_NAME, header=True)
+        agg_shootings = agg_shootings.withColumn(MONTH, F.col(MONTH).cast("int"))
+        agg_shootings = agg_shootings.withColumn(DAY, F.col(DAY).cast("int"))
         agg_green = spark.read.parquet(FINAL_GREEN, header=True)
 
         # Now we will do an INNER JOIN, since we only want  cases
