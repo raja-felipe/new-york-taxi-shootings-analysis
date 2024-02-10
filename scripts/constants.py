@@ -96,6 +96,7 @@ TAXI_SHAPE_FILE = f'{ZONE_DIR}taxi_zones.shp'
 RAW_DIR = "./data/raw/"
 CURATED_DIR = "./data/curated/"
 ZONE_DIR = f'{LANDING_DIR}zone/'
+PLOTS_DIR =f'./plots/'
 TAXI_DIR = f'{LANDING_DIR}{TAXI}/'
 GREEN_DIR = f'{TAXI_DIR}{GREEN}/'
 YELLOW_DIR = f'{TAXI_DIR}{YELLOW}/'
