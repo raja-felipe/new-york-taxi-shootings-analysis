@@ -1,6 +1,7 @@
 from constants import *
 from pyspark.sql import functions as F
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType, DoubleType, LongType, TimestampNTZType
+from functools import reduce
 import os
 
 class DataStandardizer:
@@ -104,6 +105,41 @@ class DataStandardizer:
                         curr_green.write.parquet(green_file_path)
         return
     
+    def standardize_nypd_data(self):
+        # Make the spark session
+        spark = create_spark()
+
+        # First make the raw directory
+        if not os.path.exists(RAW_NYPD_DIR):
+             os.makedirs(RAW_NYPD_DIR)
+
+        # Get the shootings data from the landing directory
+        landing_shootings = spark.read.csv(LANDING_NYPD_SHOOTINGS)
+
+        landing_shootings = landing_shootings.distinct()
+        # Change column names
+        old_cols = landing_shootings.columns
+        new_cols = list(landing_shootings.head(1)[0])
+        landing_shootings = reduce(lambda data, idx: data.withColumnRenamed(old_cols[idx], new_cols[idx]), 
+                            range(len(old_cols)), landing_shootings)
+        # Remove unnecessary row
+        landing_shootings = landing_shootings.filter(F.col(NYPD_ROW_FILTERS[0]) != NYPD_ROW_FILTERS[0])
+        landing_shootings = landing_shootings.withColumn(YEAR, F.col(NYPD_DATE_COLUMNS[0]).substr(7, 4))
+        landing_shootings = landing_shootings.withColumn(MONTH, F.col(NYPD_DATE_COLUMNS[0]).substr(1, 2))
+        landing_shootings = landing_shootings.withColumn(DAY, F.col(NYPD_DATE_COLUMNS[0]).substr(4, 2))
+        # Only get from 2016 onwards
+        landing_shootings = landing_shootings.filter(F.col(YEAR) >= FROM_YEAR)
+        # Column casing
+        col_casing = [F.col(col_name).alias(col_name.lower()) for col_name in landing_shootings.columns]
+        landing_shootings = landing_shootings.select(*col_casing)
+        # Save the file
+        curr_name = RAW_SHOOTINGS_DIR
+        if not os.path.exists(curr_name):
+            landing_shootings.write.parquet(curr_name)
+
+        return
+    
 if __name__ == "__main__":
     data_standardizer = DataStandardizer()
     data_standardizer.standardize_green_taxi_data()
+    data_standardizer.standardize_nypd_data()

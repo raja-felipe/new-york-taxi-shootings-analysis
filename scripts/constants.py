@@ -96,6 +96,8 @@ YELLOW_DIR = f'{TAXI_DIR}{YELLOW}/'
 FHV_DIR = f'{TAXI_DIR}{FHV}/'
 HVFHV_DIR = f'{TAXI_DIR}{FHVHV}/'
 RAW_GREEN_DIR = f'{RAW_DIR}{GREEN}/'
+RAW_NYPD_DIR = f'{RAW_DIR}{NYPD}/'
+RAW_SHOOTINGS_DIR = f'{RAW_NYPD_DIR}shootings.csv'
 
 # Needed Columns and Bounds
 GREEN_PICKUP_DATETIME = "lpep_pickup_datetime"
@@ -145,6 +147,11 @@ TRIP_TYPE = "trip_type"
 TRIP_TYPE_SET = -1
 
 TIME_FORMAT = 'HH:mm:ss'
+
+SHOOTINGS_KEY = "INCIDENT_KEY"
+SHOOTINGS_DATE = "OCCUR_DATE"
+NYPD_ROW_FILTERS = [SHOOTINGS_KEY]
+NYPD_DATE_COLUMNS = [SHOOTINGS_DATE]
 
 # Column order to merge taxi datasets
 COLUMN_ORDER = ["vendorid", 
