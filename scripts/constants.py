@@ -115,6 +115,8 @@ CURATED_SHOOTINGS_DIR = f'{CURATED_NYPD_DIR}shootings.csv'
 FILTERED_SHOOTINGS_NAME = f'{CURATED_SHOOTINGS_DIR}/filtered_shootings.csv'
 OHE_SHOOTINGS_NAME = f'{CURATED_SHOOTINGS_DIR}/ohe_shootings.csv'
 AGGREGATED_SHOOTINGS_NAME = f'{CURATED_SHOOTINGS_DIR}/aggregated_shootings.csv'
+# FINAL DATAFRAME LOCATION
+FINAL_DF = f'{CURATED_DIR}final_df{PARQUET}'
 
 # Needed Columns and Bounds
 GREEN_PICKUP_DATETIME = "lpep_pickup_datetime"
