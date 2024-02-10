@@ -34,6 +34,10 @@ TO_DAY = 31
 YEARS = range(FROM_YEAR,TO_YEAR)
 MONTHS = range(1,13)
 MONTH_ZIP = 2
+DAY_OF_WEEK = "day_of_week"
+FROM_DAY_OF_WEEK = 1
+TO_DAY_OF_WEEK = 7
+TAXI_COUNT = "taxi_count"
 
 YELLOW = 'yellow'
 YELLOW_VAL = 1
@@ -87,6 +91,8 @@ LANDING_NYPD_SHOOTINGS = f'{LANDING_NYPD_DIR}shootings.csv'
 ZONE_DIR = f"{LANDING_DIR}zone/"
 NY_ZONE_LOOKUP_FILE = f'{ZONE_DIR}ny_zones_lookup.csv'
 NY_ZONE_SHP_FILE = f'{ZONE_DIR}ny_zones.zip'
+TAXI_ZONE_LOOKUP_FILE = f'{ZONE_DIR}ny_zones_lookup.csv'
+TAXI_SHAPE_FILE = f'{ZONE_DIR}taxi_zones.shp'
 RAW_DIR = "./data/raw/"
 CURATED_DIR = "./data/curated/"
 ZONE_DIR = f'{LANDING_DIR}zone/'
@@ -98,6 +104,17 @@ HVFHV_DIR = f'{TAXI_DIR}{FHVHV}/'
 RAW_GREEN_DIR = f'{RAW_DIR}{GREEN}/'
 RAW_NYPD_DIR = f'{RAW_DIR}{NYPD}/'
 RAW_SHOOTINGS_DIR = f'{RAW_NYPD_DIR}shootings.csv'
+TAXI_ZONE_LOOKUP_FILE = f'{ZONE_DIR}ny_zones_lookup.csv'
+CURATED_GREEN_DIR = f'{CURATED_DIR}{GREEN}/'
+FILTERED_GREEN_NAME = f'{CURATED_GREEN_DIR}/filtered_green{PARQUET}'
+OHE_GREEN_NAME = f'{CURATED_GREEN_DIR}/encoded_green{PARQUET}'
+AGGREGATED_GREEN_NAME = f'{CURATED_GREEN_DIR}/aggregated_green{PARQUET}'
+FINAL_GREEN = f'{CURATED_GREEN_DIR}/final_green{PARQUET}'
+CURATED_NYPD_DIR = f'{CURATED_DIR}{NYPD}/'
+CURATED_SHOOTINGS_DIR = f'{CURATED_NYPD_DIR}shootings.csv'
+FILTERED_SHOOTINGS_NAME = f'{CURATED_SHOOTINGS_DIR}/filtered_shootings.csv'
+OHE_SHOOTINGS_NAME = f'{CURATED_SHOOTINGS_DIR}/ohe_shootings.csv'
+AGGREGATED_SHOOTINGS_NAME = f'{CURATED_SHOOTINGS_DIR}/aggregated_shootings.csv'
 
 # Needed Columns and Bounds
 GREEN_PICKUP_DATETIME = "lpep_pickup_datetime"
@@ -127,6 +144,42 @@ DROPOFF_MINUTES = "dropoff_minutes"
 DROPOFF_SECONDS = "dropoff_seconds"
 DROPOFF_DATE = "dropoff_date"
 TRIP_TIME_SECONDS = "trip_time_seconds"
+CONGESTION_SURCHARGE = 'congestion_surcharge'
+TOTAL_AMOUNT = "total_amount"
+VENDOR_ID = "vendorid"
+TAXI_VENDOR_1 = 1
+TAXI_VENDOR_2 = 2
+STORE_AND_FWD_FLAG = "store_and_fwd_flag"
+STORE_AND_FWD_FLAG_Y = "Y"
+STORE_AND_FWD_FLAG_N = "N"
+RATE_CODE_ID = "ratecodeid"
+MIN_RATE_CODE_ID = 1
+MAX_RATE_CODE_ID = 6
+TOTAL_AMOUNT = "total_amount"
+FARE_AMOUNT = 'fare_amount'
+TOLLS_AMOUNT = 'tolls_amount'
+TIP_AMOUNT = 'tip_amount'
+MIN_AMOUNT = 0
+NEGATIVE_AMOUNTS = "negative_amounts"
+EXTRA = 'extra'
+RUSH_HOUR = 0.5
+OVERNIGHT = 1
+MTA_TAX = 'mta_tax'
+MTA_TAX_VAL = 0.5
+
+CONGESTION_SURCHARGE = 'congestion_surcharge'
+
+IMPRORVEMENT_SURCHARGE = 'improvement_surcharge'
+IMPRORVEMENT_SURCHARGE_VAL = 0.3
+TRIP_TYPE = "trip_type"
+TRIP_TYPE_SET = -1
+TRIP_TYPE_HAIL = 1
+TRIP_TYPE_DISPATCH = 2
+
+PAYMENT_TYPE = "payment_type"
+PAYMENT_TYPE_MIN = 1
+CREDIT_CARD = 1
+PAYMENT_TYPE_MAX = 6
 
 PASSENGER_COUNT = "passenger_count"
 TAXI_COLOR = "taxi_color"
@@ -152,6 +205,50 @@ SHOOTINGS_KEY = "INCIDENT_KEY"
 SHOOTINGS_DATE = "OCCUR_DATE"
 NYPD_ROW_FILTERS = [SHOOTINGS_KEY]
 NYPD_DATE_COLUMNS = [SHOOTINGS_DATE]
+
+LOCATION_ID = "LocationID"
+PICKUP_LOCATION_ID = "pulocationid"
+DROPOFF_LOCATION_ID = "dolocationid"
+PU_LOCATION_ID = "pulocationid"
+DO_LOCATION_ID = "dolocationid"
+MIN_LOCATION_ID = 1
+MAX_LOCATION_ID = 263
+
+SHOOTINGS_KEY = "INCIDENT_KEY"
+SHOOTINGS_DATE = "OCCUR_DATE"
+
+INCIDENT_KEY = 'incident_key'
+OCCUR_DATE = 'occur_date'
+OCCUR_TIME = 'occur_time'
+BORO = 'boro'
+LOC_OF_OCCUR_DESC = 'loc_of_occur_desc'
+LOC_DESC = "location_desc"
+PRECINCT = 'precinct'
+JURISDICTION_CODE = 'jurisdiction_code'
+LOC_CLASSIFICATION_DESC = 'loc_classfctn_desc'
+STATISTICAL_MURDER_FLAG = 'statistical_murder_flag'
+PERP_AGE_GROUP = "perp_age_group"
+PERP_SEX = "perp_sex"
+PERP_RACE = "perp_race"
+VIC_AGE_GROUP = 'vic_age_group'
+VIC_SEX = 'vic_sex'
+VIC_RACE = 'vic_race'
+X_COORD_CD = 'x_coord_cd'
+Y_COORD_CD = 'y_coord_cd'
+LATITUDE = 'latitude'
+LONGITUDE = 'longitude'
+LON_LAT = 'lon_lat'
+SHOOTINGS_COUNT = "shootings_count"
+
+TIME_FORMAT = 'HH:mm:ss'
+SF_LONGITUDE = "Longitude"
+SF_LATITUDE = "Latitude"
+LONGITUDE = "longitude"
+LATITUDE = "latitude"
+TAXI_LOCATION_ID = "taxi_location_id"
+TAXI_COUNT = "taxi_count"
+
+INNER = "inner"
 
 # Column order to merge taxi datasets
 COLUMN_ORDER = ["vendorid", 
