@@ -18,6 +18,8 @@ To run the pipeline, please visit the `scripts` directory and run the files in o
     - Additionally, visual explanations and analysis of the results are contained in the `data_models_visualized.ipynb` notebook.
     - The script saves text files used by the notebook to output relevant metrics for said models.
 
+Afterwards, in the `report` folder is a LaTeX/PDF file of the report associated with this analysis.
+
 **NOTE**: You could either manually attach the root of the repository to the path of your IDEA (VS Code, PyCharm will have tutorials on this). Otherwise, to run the code:
 - Open your  console and cd to the git repo directory using cd {path_to_repo}
 - For each script writen below, run it as python3 -m scripts.{name_of_script}
